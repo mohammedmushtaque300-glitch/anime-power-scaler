@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Power-Scaler</title>
+    <style>
+        :root {
+            --aura-color: #333;
+        }
+        body {
+            background-color: #0f0f0f;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            transition: background 0.5s ease;
+            background: radial-gradient(circle, var(--aura-color) 0%, #000 100%);
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        /* Feature 1: Stat Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #444;
+            width: 250px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        input, select {
+            width: 80%;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background: #ff4757;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px;
+            font-size: 1.2rem;
+            box-shadow: 0 0 15px rgba(255, 71, 87, 0.5);
+        }
+        /* Feature 2: Battle Results */
+        #result-display {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>⚡ Anime Power-Scaler ⚡</h1>
+
+    <div class="container">
+        <div class="card" id="card1">
+            <h3>Fighter 1</h3>
+            <input type="text" id="name1" placeholder="Name (e.g. Goku)">
+            <select id="rank1">
+                <option value="1">C-Rank</option>
+                <option value="5">S-Rank</option>
+                <option value="10">Planet Buster</option>
+                <option value="20">Multiversal</option>
+            </select>
+        </div>
+
+        <div class="card" id="card2">
+            <h3>Fighter 2</h3>
+            <input type="text" id="name2" placeholder="Name (e.g. Jin-woo)">
+            <select id="rank2">
+                <option value="1">C-Rank</option>
+                <option value="5">S-Rank</option>
+                <option value="10">Planet Buster</option>
+                <option value="20">Multiversal</option>
+            </select>
+        </div>
+    </div>
+
+    <button onclick="startBattle()">CALCULATE WINNER</button>
+    <div id="result-display">Waiting for battle...</div>
+
+    <script>
+        // Feature 3: Battle Logic & Aura Effect
+        function startBattle() {
+            const p1Name = document.getElementById('name1').value || "Fighter 1";
+            const p2Name = document.getElementById('name2').value || "Fighter 2";
+            const p1Power = parseInt(document.getElementById('rank1').value);
+            const p2Power = parseInt(document.getElementById('rank2').value);
+            const resultDiv = document.getElementById('result-display');
+
+            if (p1Power > p2Power) {
+                resultDiv.innerText = p1Name + " Wins! 🔥";
+                document.documentElement.style.setProperty('--aura-color', '#ff9f43'); // Gold/Orange aura
+            } else if (p2Power > p1Power) {
+                resultDiv.innerText = p2Name + " Wins! 🌑";
+                document.documentElement.style.setProperty('--aura-color', '#5f27cd'); // Purple/Dark aura
+            } else {
+                resultDiv.innerText = "It's a Tie! Massive Clash! 💥";
+                document.documentElement.style.setProperty('--aura-color', '#222f3e');
+            }
+        }
+    </script>
+</body>
+</html>
